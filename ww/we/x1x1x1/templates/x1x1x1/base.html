@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Природа{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root { --bg:#0b1e22; --card:#11252a; --accent:#4cc9f0; --text:#e6f1f3; --muted:#99b3b8; }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,#092026,#0b1e22 40%,#0d2228);color:var(--text)}
+    header{position:sticky;top:0;background:rgba(9,32,38,.85);backdrop-filter:blur(8px);border-bottom:1px solid #12343b}
+    .container{max-width:950px;margin:0 auto;padding:16px}
+    nav{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+    nav a{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:8px;transition:.2s}
+    nav a.active, nav a:hover{color:var(--text);background:rgba(76,201,240,.12);box-shadow:0 0 0 1px rgba(76,201,240,.25) inset}
+    .hero{padding:32px 0}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+    .card{background:var(--card);border:1px solid #14343a;border-radius:14px;padding:16px;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+    h1,h2{margin:0 0 12px}
+    footer{margin-top:24px;padding:16px 0;border-top:1px solid #12343b;color:var(--muted)}
+    .muted{color:var(--muted)}
+  </style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <nav>
+      <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Главная</a>
+      <a href="{% url 'forests' %}" class="{% if request.resolver_match.url_name == 'forests' %}active{% endif %}">Леса</a>
+      <a href="{% url 'oceans' %}" class="{% if request.resolver_match.url_name == 'oceans' %}active{% endif %}">Океаны</a>
+      <span class="muted" style="margin-left:auto">Сайт о природе</span>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  {% block content %}{% endblock %}
+</main>
+
+<footer>
+  <div class="container">
+    © 2025 Природа — учебный пример
+  </div>
+</footer>
+</body>
+</html>
